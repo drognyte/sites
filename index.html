@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Site sobre Frameworks JavaScript">
+  <meta name="author" content="">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <title>Frameworks JavaScript</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .main-header {
+      background: #1e1e2e;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      float: left;
+      padding: 10px 50px;
+    }
+
+    .logo a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .logo em {
+      color: #f5a425;
+    }
+
+    .main-nav {
+      float: right;
+      padding: 10px 50px;
+    }
+
+    .main-menu {
+      list-style: none;
+      margin: 0;
+    }
+
+    .main-menu li {
+      display: inline-block;
+      position: relative;
+    }
+
+    .main-menu li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .main-menu li a:hover,
+    .main-menu li.active a {
+      color: #f5a425;
+    }
+
+    .sub-menu {
+      position: absolute;
+      background: #2a2a3e;
+      min-width: 200px;
+      display: none;
+      list-style: none;
+      padding: 10px 0;
+    }
+
+    .has-submenu:hover .sub-menu {
+      display: block;
+    }
+
+    .sub-menu li {
+      display: block;
+    }
+
+    .sub-menu li a {
+      padding: 10px 20px;
+    }
+
+    .main-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      margin-top: 80px;
+    }
+
+    .main-banner h6 {
+      font-size: 20px;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .main-banner h2 {
+      font-size: 60px;
+      font-weight: 800;
+      margin-bottom: 30px;
+    }
+
+    .main-banner em {
+      color: #f5a425;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-heading h2 {
+      font-size: 40px;
+      font-weight: 700;
+      color: #1e1e2e;
+    }
+
+    .framework-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+    }
+
+    .framework-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .framework-card h4 {
+      color: #667eea;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .framework-card .icon {
+      font-size: 50px;
+      color: #f5a425;
+      margin-bottom: 20px;
+    }
+
+    .btn-custom {
+      background: #667eea;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.3s;
+      border: none;
+    }
+
+    .btn-custom:hover {
+      background: #764ba2;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .about-section {
+      background: #f8f9fa;
+    }
+
+    .example-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-left: 4px solid #667eea;
+    }
+
+    footer {
+      background: #1e1e2e;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .success-message {
+      color: #28a745;
+      font-size: 16px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .main-nav {
+        float: none;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .logo {
+        float: none;
+        text-align: center;
+      }
+
+      .main-menu li {
+        display: block;
+      }
+    }
+
+    /* Back to top button */
+    #back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 30px;
+      width: 48px;
+      height: 48px;
+      background: #667eea;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity .25s ease, transform .25s ease, visibility .25s;
+      z-index: 1100;
+    }
+
+    #back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #back-to-top:hover {
+      background: #764ba2;
+      transform: translateY(-4px);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="main-header clearfix">
+    <div class="logo">
+      <a href="#section1"><em>Frame</em>works JS</a>
+    </div>
+    <nav class="main-nav">
+      <ul class="main-menu">
+        <li class="active"><a href="#section1">Home</a></li>
+        <li><a href="#section2">Sobre</a></li>
+        <li class="has-submenu"><a href="#section3">Frameworks</a>
+          <ul class="sub-menu">
+            <li><a href="#react">React</a></li>
+            <li><a href="#vue">Vue.js</a></li>
+            <li><a href="#angular">Angular</a></li>
+          </ul>
+        </li>
+        <li><a href="#section4">Aplicações</a></li>
+        <li class="has-submenu"><a href="#section5">Créditos</a>
+          <ul class="sub-menu">
+            <li><a href="#desenvolvedores">Desenvolvedores</a></li>
+            <li><a href="#bibliografia">Bibliografia</a></li>
+          </ul>
+        </li>
+        <li><a href="#section6">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Banner - HOME -->
+  <section class="main-banner" id="section1">
+    <div class="container">
+      <div class="caption">
+        <h6>Aprenda sobre</h6>
+        <h2><em>Frameworks</em> JavaScript</h2>
+        <p style="font-size: 18px; margin: 20px 0;">Explore os principais frameworks que revolucionaram o
+          desenvolvimento web moderno</p>
+        <a href="#section2" class="btn-custom">Descubra Mais</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="section about-section" id="section2">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Sobre Frameworks JavaScript</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <p style="font-size: 18px; line-height: 1.8; text-align: justify;">
+            Frameworks JavaScript são conjuntos de bibliotecas e ferramentas que facilitam o desenvolvimento
+            de aplicações web modernas. Eles fornecem estruturas predefinidas, componentes reutilizáveis e
+            padrões de projeto que aceleram o desenvolvimento e melhoram a manutenibilidade do código. Os
+            frameworks mais populares como React, Vue.js e Angular transformaram a forma como construímos
+            interfaces de usuário, permitindo criar aplicações dinâmicas, responsivas e de alta performance.
+            Cada framework possui suas próprias filosofias, arquiteturas e ecossistemas, atendendo
+            diferentes necessidades e preferências de desenvolvimento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRAMEWORKS -->
+  <section class="section" id="section3">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Principais Frameworks</h2>
+      </div>
+
+      <!-- React -->
+      <div class="framework-card" id="react">
+        <div class="row align-items-center">
+          <div class="col-md-2 text-center">
+            <div class="icon">
+              <i class="fab fa-react"></i>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <h4>React</h4>
+            <p><strong>Para que é usado:</strong> React é uma biblioteca JavaScript para construir
+              interfaces de usuário, especialmente aplicações de página única (SPAs). Criado pelo
+              Facebook, permite criar componentes reutilizáveis e gerenciar o estado da aplicação de forma
+              eficiente.</p>
+
+            <p><strong>Exemplos de Aplicação:</strong></p>
+            <ul>
+              <li>Facebook, Instagram, WhatsApp Web</li>
+              <li>Netflix, Airbnb, Uber</li>
+              <li>Dashboards administrativos e painéis de controle</li>
+              <li>E-commerce e marketplaces</li>
+            </ul>
+
+            <p><strong>Recursos Principais:</strong></p>
+            <ul>
+              <li>Virtual DOM para renderização eficiente</li>
+              <li>Componentes reutilizáveis baseados em JSX</li>
+              <li>Hooks para gerenciamento de estado</li>
+              <li>Ecossistema rico com Redux, Next.js, React Native</li>
+              <li>Comunidade massiva e suporte contínuo</li>
+            </ul>
+
+            <p><strong>Custo:</strong> Gratuito e open-source (Licença MIT)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vue.js -->
+      <div class="framework-card" id="vue">
+        <div class="row align-items-center">
+          <div class="col-md-2 text-center">
+            <div class="icon">
+              <i class="fab fa-vuejs"></i>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <h4>Vue.js</h4>
+            <p><strong>Para que é usado:</strong> Vue.js é um framework progressivo para construir
+              interfaces de usuário. Focado na camada de visualização, é fácil de integrar com outros
+              projetos e bibliotecas. Ideal para criar aplicações web interativas e dinâmicas.</p>
+
+            <p><strong>Exemplos de Aplicação:</strong></p>
+            <ul>
+              <li>Alibaba, Xiaomi, GitLab</li>
+              <li>Nintendo, Grammarly, Adobe Portfolio</li>
+              <li>Aplicações empresariais e sistemas internos</li>
+              <li>Sites corporativos e portfolios interativos</li>
+            </ul>
+
+            <p><strong>Recursos Principais:</strong></p>
+            <ul>
+              <li>Sintaxe simples e curva de aprendizado suave</li>
+              <li>Sistema de componentes intuitivo</li>
+              <li>Reatividade automática de dados</li>
+              <li>Vue Router e Vuex para roteamento e gerenciamento de estado</li>
+              <li>Excelente documentação em português</li>
+            </ul>
+
+            <p><strong>Custo:</strong> Gratuito e open-source (Licença MIT)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Angular -->
+      <div class="framework-card" id="angular">
+        <div class="row align-items-center">
+          <div class="col-md-2 text-center">
+            <div class="icon">
+              <i class="fab fa-angular"></i>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <h4>Angular</h4>
+            <p><strong>Para que é usado:</strong> Angular é um framework completo desenvolvido pelo Google
+              para construir aplicações web robustas e escaláveis. Oferece uma solução completa com
+              arquitetura MVC, TypeScript integrado e ferramentas empresariais.</p>
+
+            <p><strong>Exemplos de Aplicação:</strong></p>
+            <ul>
+              <li>Google Cloud Platform, Gmail, YouTube TV</li>
+              <li>Microsoft Office, Forbes, Deutsche Bank</li>
+              <li>Aplicações empresariais de grande escala</li>
+              <li>Sistemas bancários e financeiros</li>
+            </ul>
+
+            <p><strong>Recursos Principais:</strong></p>
+            <ul>
+              <li>Framework completo com tudo incluído</li>
+              <li>TypeScript como linguagem padrão</li>
+              <li>Two-way data binding</li>
+              <li>Dependency Injection avançado</li>
+              <li>CLI poderoso para geração de código</li>
+              <li>Ideal para projetos empresariais complexos</li>
+            </ul>
+
+            <p><strong>Custo:</strong> Gratuito e open-source (Licença MIT)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APLICAÇÕES -->
+  <section class="section about-section" id="section4">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Exemplos de Aplicações e Recursos</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="example-item">
+            <h5><i class="fas fa-shopping-cart"></i> E-commerce</h5>
+            <p>Lojas online com carrinho de compras, filtros de produtos, sistema de pagamento e gestão de
+              pedidos usando React ou Vue.js.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="example-item">
+            <h5><i class="fas fa-chart-line"></i> Dashboards</h5>
+            <p>Painéis administrativos com gráficos interativos, tabelas dinâmicas e visualização de dados
+              em tempo real.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="example-item">
+            <h5><i class="fas fa-comments"></i> Redes Sociais</h5>
+            <p>Plataformas de mídia social com feeds dinâmicos, sistema de likes, comentários e chat em
+              tempo real.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="example-item">
+            <h5><i class="fas fa-mobile-alt"></i> Progressive Web Apps</h5>
+            <p>Aplicações web que funcionam offline, enviam notificações push e oferecem experiência similar
+              a apps nativos.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="example-item">
+            <h5><i class="fas fa-video"></i> Streaming</h5>
+            <p>Plataformas de vídeo sob demanda com player customizado, playlists e recomendações
+              personalizadas.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="example-item">
+            <h5><i class="fas fa-gamepad"></i> Jogos Web</h5>
+            <p>Jogos interativos no navegador com animações, física e sistema de pontuação usando frameworks
+              modernos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <h4 class="mb-4">Recursos JavaScript em Frameworks:</h4>
+          <div class="row">
+            <div class="col-md-4">
+              <ul>
+                <li>Componentes Reutilizáveis</li>
+                <li>Single Page Applications (SPA)</li>
+                <li>Virtual DOM</li>
+                <li>State Management</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul>
+                <li>Roteamento Dinâmico</li>
+                <li>APIs RESTful Integration</li>
+                <li>Reactive Programming</li>
+                <li>Hot Module Replacement</li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul>
+                <li>Server-Side Rendering</li>
+                <li>Code Splitting</li>
+                <li>TypeScript Support</li>
+                <li>Testing Frameworks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRÉDITOS -->
+  <section class="section" id="section5">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Créditos</h2>
+      </div>
+
+      <!-- Desenvolvedores -->
+      <div class="row" id="desenvolvedores">
+        <div class="col-md-12 mb-4">
+          <h4><i class="fas fa-users"></i> Desenvolvedores do Projeto</h4>
+        </div>
+        <div class="col-md-3">
+          <div class="framework-card text-center">
+            <i class="fas fa-user-circle" style="font-size: 60px; color: #667eea;"></i>
+            <h5 class="mt-3">Victor Hugo</h5>
+            <p>Aluno de Desenvolvimento de Sistema</p>
+            <p>Responsável pela criação do site</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="framework-card text-center">
+            <i class="fas fa-user-circle" style="font-size: 60px; color: #667eea;"></i>
+            <h5 class="mt-3">Júlia Borges</h5>
+            <p>Aluna de Desenvolvimento de Sistema</p>
+            <p>Responsável pela pesquisa</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="framework-card text-center">
+            <i class="fas fa-user-circle" style="font-size: 60px; color: #667eea;"></i>
+            <h5 class="mt-3">Felipe Marques</h5>
+            <p>Aluno de Desenvolvimento de Sistema</p>
+            <p>Responsável pela pesquisa</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="framework-card text-center">
+            <i class="fas fa-user-circle" style="font-size: 60px; color: #667eea;"></i>
+            <h5 class="mt-3">Guilherme Rezende</h5>
+            <p>Aluno de Desenvolvimento de Sistema</p>
+            <p>Responsável pela pesquisa</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bibliografia -->
+      <div class="row mt-5" id="bibliografia">
+        <div class="col-md-12">
+          <h4><i class="fas fa-book"></i> Bibliografia</h4>
+          <div class="framework-card">
+            <ol>
+              <li>Documentação Oficial React. Disponível em: <a href="https://react.dev"
+                  target="_blank">https://react.dev</a></li>
+              <li>Documentação Oficial Vue.js. Disponível em: <a href="https://vuejs.org"
+                  target="_blank">https://vuejs.org</a></li>
+              <li>Documentação Oficial Angular. Disponível em: <a href="https://angular.io"
+                  target="_blank">https://angular.io</a></li>
+              <li>MDN Web Docs - JavaScript. Mozilla Developer Network, 2024.</li>
+              <li>FREEMAN, Adam. Pro React 16. Apress, 2019.</li>
+              <li>MACRAE, Callum. Vue.js: Up and Running. O'Reilly Media, 2018.</li>
+              <li>FAIN, Yakov; MOISEEV, Anton. Angular Development with TypeScript. Manning Publications,
+                2019.</li>
+              <li>State of JavaScript Survey 2024. Disponível em: <a href="https://stateofjs.com"
+                  target="_blank">https://stateofjs.com</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="section about-section" id="section6">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Entre em Contato</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="contact-form">
+            <form id="contactForm" novalidate>
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome Completo *</label>
+                <input type="text" class="form-control" id="nome" name="nome" required minlength="3">
+                <div class="error-message" id="nomeError">Por favor, insira seu nome completo (mínimo 3
+                  caracteres).</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">E-mail *</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div class="error-message" id="emailError">Por favor, insira um e-mail válido.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone *</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" required pattern="[0-9\s\-\(\)]+">
+                <div class="error-message" id="telefoneError">Por favor, insira um telefone válido.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="avaliacao" class="form-label">Avalie nosso site *</label>
+                <select class="form-control" id="avaliacao" name="avaliacao" required>
+                  <option value="">Selecione uma avaliação</option>
+                  <option value="0">0 - Muito Ruim</option>
+                  <option value="1">1 - Ruim</option>
+                  <option value="2">2 - Regular</option>
+                  <option value="3">3 - Bom</option>
+                  <option value="4">4 - Muito Bom</option>
+                  <option value="5">5 - Excelente</option>
+                </select>
+                <div class="error-message" id="avaliacaoError">Por favor, selecione uma avaliação.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="comentario" class="form-label">Deixe seu comentário</label>
+                <textarea class="form-control" id="comentario" name="comentario" rows="4" readonly
+                  style="background-color: #f0f0f0; cursor: not-allowed;"
+                  placeholder="Campo desabilitado para comentários"></textarea>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn-custom">Enviar Mensagem</button>
+              </div>
+
+              <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i> Mensagem enviada com sucesso! Obrigado pelo contato.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p><i class="fa fa-copyright"></i> ETEC HUMBERTO FERRUCIO GAZZETTA 2025-&COPYtodos os direitos
+            reservados<br>
+            Trabalho acadêmico sem fins comerciais.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão voltar ao topo -->
+  <div id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Active menu item on scroll
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const sections = document.querySelectorAll('section');
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      document.querySelectorAll('.main-menu li').forEach(li => {
+        li.classList.remove('active');
+        const link = li.querySelector('a');
+        if (link && link.getAttribute('href') === '#' + current) {
+          li.classList.add('active');
+        }
+      });
+    });
+
+    // Form validation
+    const form = document.getElementById('contactForm');
+    const nome = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const telefone = document.getElementById('telefone');
+    const avaliacao = document.getElementById('avaliacao');
+
+    function showError(input, errorId) {
+      document.getElementById(errorId).style.display = 'block';
+      input.classList.add('is-invalid');
+    }
+
+    function hideError(input, errorId) {
+      document.getElementById(errorId).style.display = 'none';
+      input.classList.remove('is-invalid');
+    }
+
+    function validateNome() {
+      if (nome.value.trim().length < 3) {
+        showError(nome, 'nomeError');
+        return false;
+      }
+      hideError(nome, 'nomeError');
+      return true;
+    }
+
+    function validateEmail() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email.value.trim())) {
+        showError(email, 'emailError');
+        return false;
+      }
+      hideError(email, 'emailError');
+      return true;
+    }
+
+    function validateTelefone() {
+      const telefoneRegex = /^[\d\s\-\(\)]+$/;
+      if (!telefoneRegex.test(telefone.value.trim()) || telefone.value.trim().length < 8) {
+        showError(telefone, 'telefoneError');
+        return false;
+      }
+      hideError(telefone, 'telefoneError');
+      return true;
+    }
+
+    function validateAvaliacao() {
+      if (avaliacao.value === '') {
+        showError(avaliacao, 'avaliacaoError');
+        return false;
+      }
+      hideError(avaliacao, 'avaliacaoError');
+      return true;
+    }
+
+    nome.addEventListener('blur', validateNome);
+    email.addEventListener('blur', validateEmail);
+    telefone.addEventListener('blur', validateTelefone);
+    avaliacao.addEventListener('change', validateAvaliacao);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const isNomeValid = validateNome();
+      const isEmailValid = validateEmail();
+      const isTelefoneValid = validateTelefone();
+      const isAvaliacaoValid = validateAvaliacao();
+
+      if (isNomeValid && isEmailValid && isTelefoneValid && isAvaliacaoValid) {
+        document.getElementById('successMessage').style.display = 'block';
+
+        setTimeout(() => {
+          form.reset();
+          document.getElementById('successMessage').style.display = 'none';
+        }, 3000);
+      }
+    });
+
+    // Back to top button behavior
+    (function () {
+      const backToTop = document.getElementById('back-to-top');
+      if (!backToTop) return;
+
+      // Mostrar/ocultar botão ao rolar
+      const toggleVisibility = () => {
+        if (window.pageYOffset > 300) {
+          backToTop.classList.add('show');
+        } else {
+          backToTop.classList.remove('show');
+        }
+      };
+
+      window.addEventListener('scroll', toggleVisibility);
+      // Checar ao carregar
+      toggleVisibility();
+
+      // Clique: rolar ao topo suavemente
+      backToTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+
+</html>
